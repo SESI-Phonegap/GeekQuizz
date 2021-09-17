@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- General -->
+    <dimen name="recycler_column_width">150dp</dimen>
+    <dimen name="paddingStartEndEditText">5dp</dimen>
+    <dimen name="btnWidthC">120dp</dimen>
+    <dimen name="btnWidth">160dp</dimen>
+    <dimen name="btnHeigh">70dp</dimen>
+    <dimen name="btnDialog">50dp</dimen>
+    <dimen name="marginBottomTop8dp">8dp</dimen>
+    <dimen name="editTextHeigh">60dp</dimen>
+    <dimen name="textviewTitleDialog">22sp</dimen>
+    <dimen name="textviewResultDialog">20sp</dimen>
+    <!-- LoginActivity -->
+
+    <dimen name="titleHeigh">180dp</dimen>
+    <dimen name="marginTopEditText">60dp</dimen>
+    <dimen name="marginTopEditTextRe">30dp</dimen>
+    <dimen name="layoutMarginStartEnd">24dp</dimen>
+    <dimen name="textSizeRegistro">25sp</dimen>
+</resources>

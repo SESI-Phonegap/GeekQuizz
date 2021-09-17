@@ -1,0 +1,135 @@
+<resources>
+    <string name="app_name">GeekQuizz</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_purchase">Tienda</string>
+
+    <string name="imgdescription">Description</string>
+    <string name="action_search">Buscar…</string>
+    <string name="facil">Facil</string>
+    <string name="medio">Normal</string>
+    <string name="dificil">Dificil</string>
+    <string name="mododios">Otaku</string>
+    <string name="timer">Tiempo \n %1$s</string>
+    <string name="serverError">No fue posible conectar con el servidor: %1$s</string>
+    <string name="playstore">Compite contra tus amigos y demustra que eres el mas Otaku de todos, recibe 5000 gemas al crear tu cuenta, solo ingresanodo el  userName de tu amigo:  %1$s  \n https://play.google.com/store/apps/details?id=com.sesi.chris.animangaquiz</string>
+    <string name="admodId">ca-app-pub-2449148181464779~1186776862</string>
+    <string name="bannerId">ca-app-pub-2449148181464779/4983262083</string>
+    <string name="interstitialId">ca-app-pub-2449148181464779/3826927234</string>
+    <string name="bannerBonificacion">ca-app-pub-2449148181464779/7334216966</string>
+    <!-- Bonificacion Test -->
+    <!-- <string name="bannerBonificacion">ca-app-pub-3940256099942544/5224354917</string> -->
+    <string name="btnBannerBonificacion">Gemas gratis ver anuncio</string>
+
+    <!-- Menu -->
+    <string name="quiz">Quiz</string>
+    <string name="wallpapers">Wallpapers</string>
+    <string name="tienda">Tienda</string>
+    <string name="compartir">Compartir con un amigo \n Puedes ganar 2500 gemas por cada amigo que descargue la app</string>
+    <string name="redesSociales">Compartir</string>
+    <string name="msgCompartir">Puedes ganar 2500 gemas, por cada amigo que descargue la app</string>
+    <string name="quienes">¿Quien es?</string>
+
+    <string name="noInternet">No tienes conexión a Internet</string>
+    <!-- LoginActivity -->
+    <string name="userName">Nombre de usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="btnLogin">Login</string>
+    <string name="registrarse"><u>Registrarse</u></string>
+    <string name="nav_header_title">Nombre Usuario</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="updateGemsError">Ocurrio un error al actualizar las gemas</string>
+    <string name="errorCompra">Ocurrio un error !!, No se realizo la compra</string>
+    <string name="msgGemas">Tus gemas se actualizaron correctamente.</string>
+    <string name="recordarUser">Recordar usuario</string>
+    <string name="misAvatar">Mis Avatars</string>
+    <string name="noAvatars">No tienes avatars</string>
+    <string name="o">Ó</string>
+    <string name="noValid">Opción no valida</string>
+
+    <string name="facebook_app_id">1940196376274860</string>
+    <string name="facebook_login_protocol_scheme">fb1940196376274860</string>
+
+    <!-- MenuActivity -->
+    <string name="titleMenu">Animes disponibles</string>
+    <string name="score">Puntos: %1$s</string>
+    <string name="msgImagenError">La imagen sobre pasa los 2 MB, no es posible guardarla</string>
+    <string name="msgAvatrError">Error no fue posible actualizar el avatar</string>
+    <string name="msgErrorShenlong">Necesitas reunir las 7 esferas del dragon para invocar Shenlong</string>
+
+    <!-- Dialog Resultado -->
+    <string name="titlePreguntasCorrectas">Correctas</string>
+    <string name="puntuacion">Puntuación</string>
+    <string name="gemas">Gemas</string>
+    <string name="btnAceptar">Aceptar</string>
+
+    <!-- PreguntasActivity -->
+    <string name="newRecord">Felicidades has batido un nuevo récord !!</string>
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="buscar">Buscar…</string>
+    <string name="buscarAmigo">Buscar usuario…</string>
+    <string name="buscarWallpapers">Buscar Wallpapers…</string>
+    <string name="noAlcanza">No tienes sufucientes gemas.</string>
+    <string name="msgWallpaperSaved">Se guardo exitosamente en: %1$s</string>
+    <string name="msgWallpaperSaved2">Wallpaper descargado en: AnimangaQuiz</string>
+    <string name="msgWallpaperNoSaved">Ocurrio un error al intentar guardar el Wallpaper en la SD</string>
+    <string name="msgNoSd">Necesitas tener montada la SD para descargar el Wallpaper</string>
+
+    <!-- Dialog Confirmar -->
+    <string name="msg_confirmacion">¿Estas seguro de descargar este Wallpaper? \n Gastaras %1$s Gemas</string>
+    <string name="msg_confirmar_amigo">¿ Deseas agregar a este usuario como amigo ?</string>
+    <string name="btn_aceptar">Aceptar</string>
+    <string name="btn_calcel">Cancelar</string>
+
+    <!-- Dialog Wallpaper-Avatars -->
+    <string name="msg_wallpapers">Elige una opción</string>
+    <string name="avatars">Avatars</string>
+
+    <!-- Activity Registro -->
+    <string name="titleRegitro">Registro</string>
+    <string name="nombre">Nombre</string>
+    <string name="edad">Edad</string>
+    <string name="genero">Genero</string>
+    <string name="hombre">Hombre</string>
+    <string name="mujer">Mujer</string>
+    <string name="email">Email</string>
+    <string name="msg_registro_exitoso">Registro Exitoso !</string>
+    <string name="datosincompletos">Datos incompletos</string>
+    <string name="avisoPrivacidad"><u>Aviso de privacidad </u></string>
+    <string name="userNameFriend">userName de tu amigo</string>
+
+    <!-- Activity Friends-->
+    <string name="amigos">Amigos</string>
+
+    <string name="sinDatos">No hay datos</string>
+
+    <string name="compras">Compras</string>
+    <string name="btn_comprar">Comprar</string>
+
+    <string name="error_no_skus">No encontramos ningún SKU para mostrar. Compruebe su conexión a internet</string>
+    <string name="error_billing_unavailable">La facturación no está disponible. Asegúrate de que tu aplicación Google Play está configurado correctamente</string>
+    <string name="error_billing_default">La facturación no está disponible. Por favor revisa tu dispositivo.</string>
+    <string name="alert_already_purchased">El artículo ya está comprado</string>
+    <string name="header_inapp">Compras</string>
+    <string name="header_subscriptions">Suscripciones</string>
+    <string name="acquire_5k_gems">Compraste 5K Gemas.</string>
+    <string name="acquire_10k_gems">Compraste 10K Gemas.</string>
+    <string name="acquire_20k_gems">Compraste 20K Gemas.</string>
+
+    <!-- Activity PreguntasImg -->
+    <string name="titlePreguntas">¿Que personaje es?</string>
+
+    <!-- Labels Purchase -->
+    <string name="debug_price_not_found">N/A</string>
+    <string name="debug_title_not_found">SKU: \"%1$s\" Not Found</string>
+    <string name="debug_description_not_found">Make sure that you have uploaded an APK to the Google Play developer console, that the correct SKUs have been created for the APK, and the signed-in account has been enabled for testing.</string>
+
+    <string name="header_gemas">Gemas</string>
+</resources>
