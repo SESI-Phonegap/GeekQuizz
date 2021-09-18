@@ -31,8 +31,8 @@ public interface QuizzServiceClient {
     Observable<UpdateResponse> addFrienById(String userName, String pass,int idUser, int idFriend);
     Observable<List<Wallpaper>> getAvatarsByAnime(String userName, String pass, int idAnime);
     Observable<List<User>> getAllFriendsByUser(String userName, String pass);
-    Observable<UpdateResponse> updateAvatar(String userName,String pass, int idUser, String b64);
-    Observable<LoginResponse> validaUsuarioFacebook(String userName);
+    Flowable<UpdateResponse> updateAvatar(String userName,String pass, int idUser, String b64);
+    Flowable<LoginResponse> validaUsuarioFacebook(String idFaceBook);
     Observable<UpdateResponse> updateEsferas(String userName,String pass, int idUser, int esferas);
     Observable<List<Preguntas>> getQuestionsByAnimeImg(String userName, String pass, int idAnime);
 }

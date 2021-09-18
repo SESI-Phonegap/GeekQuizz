@@ -20,15 +20,12 @@ public class LoginInteractor {
     public LiveData<LoginResponse> onLogin(String userName, String pass){
         return LiveDataReactiveStreams.fromPublisher(quizServiceClient.login(userName, pass));
     }
-    public Flowable<LoginResponse> login(String userName, String pass){
-        return quizServiceClient.login(userName,pass);
-    }
 
     public Observable<UpdateResponse> updateGems(String userName, String pass, int idUser, int gemas ){
         return quizServiceClient.updateGemas(userName,pass,idUser,gemas);
     }
 
-    public Observable<UpdateResponse> updateAvatar(String userName,String pass, int idUser, String b64){
+    public Flowable<UpdateResponse> updateAvatar(String userName,String pass, int idUser, String b64){
         return quizServiceClient.updateAvatar(userName,pass,idUser,b64);
     }
 
@@ -36,8 +33,8 @@ public class LoginInteractor {
         return quizServiceClient.registroNuevoUsuario(userNameFriend,username,nombre,email,edad,genero,password);
     }
 
-    public Observable<LoginResponse> validaUsuarioFacebook(String userName){
-        return quizServiceClient.validaUsuarioFacebook(userName);
+    public LiveData<LoginResponse> validaUsuarioFacebook(String idFaceBook){
+        return LiveDataReactiveStreams.fromPublisher(quizServiceClient.validaUsuarioFacebook(idFaceBook));
     }
 
     public Observable<UpdateResponse> updateEsferas(String userName, String pass, int idUser, int esferas ){

@@ -44,7 +44,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.3.5'
     implementation 'androidx.navigation:navigation-ui:2.3.5'
     implementation "com.android.billingclient:billing:4.0.0"
-    implementation 'com.facebook.android:facebook-android-sdk:4.37.0'
+    implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
     implementation 'com.google.android.gms:play-services-ads:20.3.0'
     implementation 'de.hdodenhof:circleimageview:2.1.0'
     implementation 'android.arch.lifecycle:reactivestreams:1.1.1'

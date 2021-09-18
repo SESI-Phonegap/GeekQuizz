@@ -52,9 +52,8 @@
     <string name="o">Ó</string>
     <string name="noValid">Opción no valida</string>
 
-    <string name="facebook_app_id">1940196376274860</string>
-    <string name="facebook_login_protocol_scheme">fb1940196376274860</string>
-
+    <string name="facebook_app_id">250566450313641</string>
+    <string name="facebook_login_protocol_scheme">fb250566450313641</string>
     <!-- MenuActivity -->
     <string name="titleMenu">Animes disponibles</string>
     <string name="score">Puntos: %1$s</string>

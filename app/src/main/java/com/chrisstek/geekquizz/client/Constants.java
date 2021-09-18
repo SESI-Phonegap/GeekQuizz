@@ -38,6 +38,7 @@ public class Constants {
             throw new IllegalStateException("ParametersBackEnd class");
         }
         public static final String USER_NAME = "userName";
+        public static final String ID_FACEBOOK = "idFaceBook";
         public static final String USER_NAME_FRIEND = "userNameFriend";
         public static final String PASS = "pass";
         public static final String ID_ANIME = "anime";

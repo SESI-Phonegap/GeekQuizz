@@ -11,41 +11,53 @@ import com.chrisstek.geekquizz.client.model.LoginResponse;
 import com.chrisstek.geekquizz.interactor.LoginInteractor;
 import com.chrisstek.geekquizz.ui.SingleMediatorLiveEvent;
 
-import io.reactivex.disposables.CompositeDisposable;
-
 public class LoginViewModel extends ViewModel {
     private LoginInteractor interactor;
-    private boolean isShowLoading;
-    private LiveData<LoginResponse> loginResponse;
-    private MutableLiveData<LoginResponse> mutableLoginResponse;
-    private CompositeDisposable compositeDisposable;
+    private LiveData<Boolean> isShowLoading = new MutableLiveData<>();
+    private LiveData<Boolean> isEnabled = new MutableLiveData<>();
     private final SingleMediatorLiveEvent<String> allMessages = new SingleMediatorLiveEvent<>();
 
 
     public LoginViewModel(LoginInteractor interactor){
         this.interactor = interactor;
-        this.isShowLoading = false;
-        this.loginResponse = new MutableLiveData<>();
-        this.mutableLoginResponse = null;
-        this.compositeDisposable = new CompositeDisposable();
+        setEnabled(true);
+        setIsShowLoadin(false);
     }
 
     public LiveData<LoginResponse> login(String userName, String password){
         return interactor.onLogin(userName, password);
     }
 
+    public LiveData<LoginResponse> validaUsuarioFacebook(String idFacebook){
+        return interactor.validaUsuarioFacebook(idFacebook);
+    }
+
     public LiveData<Boolean> isShowLoading(){
+        return this.isShowLoading;
+    }
+
+    public LiveData<Boolean> isEnabled(){
+        return this.isEnabled;
+    }
+
+    public void setIsShowLoadin(boolean isShowLoadin){
         MediatorLiveData<Boolean> isVisible = new MediatorLiveData<>();
-        isVisible.setValue(this.isShowLoading);
-        return isVisible;
+        isVisible.setValue(isShowLoadin);
+        this.isShowLoading = isVisible;
+    }
+
+    public void setEnabled(boolean isEnabled){
+        MediatorLiveData<Boolean> isVisible = new MediatorLiveData<>();
+        isVisible.setValue(isEnabled);
+        this.isEnabled = isVisible;
     }
 
     public LiveData<String> getMessages(){
         return allMessages;
     }
 
-    public LiveData<LoginResponse> getLoginResponse(){
-        return this.loginResponse;
+    public void setErrorMessage(String error){
+        allMessages.setValue(error);
     }
 
     public static class LoginActivityViewModelFactory implements ViewModelProvider.Factory {

@@ -44,18 +44,8 @@ public class MainActivityViewModel extends ViewModel {
         b64 = null;
     }
 
-    public void onLogin(String userName, String password){
-        this.isShowLoading = true;
-        Disposable disposable = interactor.login(userName, password)
-                .doOnError( error ->
-                        allMessages.setValue("Login Error: " + error.getMessage()))
-                .subscribe(loginResponse -> {
-                    this.isShowLoading = false;
-                    if (null != loginResponse){
-                        this.loginResponse = loginResponse;
-                    }
-                }, Throwable::printStackTrace);
-        compositeDisposable.add(disposable);
+    public LiveData<LoginResponse> login(String userName, String password){
+        return interactor.onLogin(userName, password);
     }
 
     public void onUpdateAvatar(String userName, String pass, int idUser, String b64){

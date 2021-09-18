@@ -51,6 +51,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -101,8 +102,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Allows billing to refresh purchases during onResume
         getLifecycle().addObserver(mainActivityViewModel.getBillingLifecycleObserver());
-
-        //setContentView(binding.getRoot());
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -197,32 +196,33 @@ public class MainActivity extends AppCompatActivity {
 
     public void refreshUserData(String userName, String pass) {
         if (isOnline(getApplicationContext())) {
-            mainActivityViewModel.onLogin(userName, pass);
-            renderLogin();
+            mainActivityViewModel.login(userName, pass).observe(this, new Observer<LoginResponse>() {
+                @Override
+                public void onChanged(LoginResponse loginResponse) {
+                    if (null != loginResponse){
+                        renderLogin(loginResponse.getUser());
+                    }
+                };
+            });
         } else {
             mainActivityViewModel.setErrorMessage(getString(R.string.noInternet));
         }
     }
 
-    public void renderLogin() {
-        LoginResponse loginResponse = mainActivityViewModel.getLoginResponse().getValue();
-        if (loginResponse != null) {
-
-            User user = loginResponse.getUser();
-            if (user != null) {
-                String sName = getIntent().getStringExtra("name");
-                String sEmail = getIntent().getStringExtra("email");
-                tvUserName.setText((sName != null) ? sName : user.getName());
-                tvEmail.setText((sEmail != null) ? sEmail : user.getEmail());
-                tvTotalScore.setText(getString(R.string.score, String.valueOf(user.getTotalScore())));
-                tvGems.setText(String.valueOf(user.getCoins()));
-                renderSferas(user);
-                userActual = user;
-                if (!user.getUrlImageUser().equals("")){
-                    decodeAvatar(user);
-                } else {
-                    imgAvatar.setImageBitmap(mainActivityViewModel.getImgAvatar());
-                }
+    public void renderLogin(User user) {
+        if (user != null) {
+            String sName = getIntent().getStringExtra("name");
+            String sEmail = getIntent().getStringExtra("email");
+            tvUserName.setText((sName != null) ? sName : user.getName());
+            tvEmail.setText((sEmail != null) ? sEmail : user.getEmail());
+            tvTotalScore.setText(getString(R.string.score, String.valueOf(user.getTotalScore())));
+            tvGems.setText(String.valueOf(user.getCoins()));
+            renderSferas(user);
+            userActual = user;
+            if (!user.getUrlImageUser().equals("")) {
+                decodeAvatar(user);
+            } else {
+                imgAvatar.setImageBitmap(mainActivityViewModel.getImgAvatar());
             }
         }
     }
@@ -345,7 +345,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     File fileImage = new File(Objects.requireNonNull(selectedImagePath));
                     Long lSizeImage = getImageSizeInKb(fileImage.length());
-                    if (lSizeImage < 2000) {
+                    if (lSizeImage <= 1000) {
                         if (isOnline(getApplicationContext())) {
                             ByteArrayOutputStream baos = new ByteArrayOutputStream();
                             Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);

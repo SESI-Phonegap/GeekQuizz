@@ -116,15 +116,15 @@ public class QuizzClient extends QuizzRetrofitClient implements QuizzServiceClie
     }
 
     @Override
-    public Observable<UpdateResponse> updateAvatar(String userName, String pass, int idUser, String b64) {
+    public Flowable<UpdateResponse> updateAvatar(String userName, String pass, int idUser, String b64) {
         return getQuizService().updateAvatar(userName,pass,idUser,b64)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
     @Override
-    public Observable<LoginResponse> validaUsuarioFacebook(String userName) {
-        return getQuizService().validaUsuarioFacebook(userName)
+    public Flowable<LoginResponse> validaUsuarioFacebook(String idFaceBook) {
+        return getQuizService().validaUsuarioFacebook(idFaceBook)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

@@ -112,14 +112,14 @@ public interface QuizzRetrofitService {
 
     @POST(Constants.EndPoint.UPDATE_AVATAR)
     @FormUrlEncoded
-    Observable<UpdateResponse> updateAvatar(@Field(Constants.ParametersBackEnd.USER_NAME) String username,
+    Flowable<UpdateResponse> updateAvatar(@Field(Constants.ParametersBackEnd.USER_NAME) String username,
                                             @Field(Constants.ParametersBackEnd.PASS) String pass,
                                             @Field(Constants.ParametersBackEnd.ID_USER)int idUser,
                                             @Field(Constants.ParametersBackEnd.AVATAR_BASE64)String b64);
 
     @POST(Constants.EndPoint.CHECK_USER_FACEBOOK)
     @FormUrlEncoded
-    Observable<LoginResponse> validaUsuarioFacebook(@Field(Constants.ParametersBackEnd.USER_NAME) String username);
+    Flowable<LoginResponse> validaUsuarioFacebook(@Field(Constants.ParametersBackEnd.ID_FACEBOOK) String idFaceBook);
 
     @POST(Constants.EndPoint.UPDATE_ESFERAS)
     @FormUrlEncoded
