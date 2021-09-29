@@ -12,7 +12,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import com.chrisstek.geekquizz.MainActivity;
 import com.chrisstek.geekquizz.R;
@@ -23,6 +27,7 @@ import com.chrisstek.geekquizz.client.model.User;
 import com.chrisstek.geekquizz.databinding.ActivityLoginBinding;
 import com.chrisstek.geekquizz.interactor.LoginInteractor;
 import com.chrisstek.geekquizz.utils.UtilInternetConnection;
+import com.chrisstek.geekquizz.utils.UtilsPreference;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -33,6 +38,7 @@ import com.facebook.login.widget.LoginButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
     private LoginViewModel loginViewModel;
@@ -58,6 +64,8 @@ public class LoginActivity extends AppCompatActivity {
         binding.setViewModel(loginViewModel);
         binding.setLoginActivity(this);
         lifecycleOwner = this;
+        facebookLogin();
+        sharedPreferenceLogin();
 
     }
 
@@ -67,17 +75,50 @@ public class LoginActivity extends AppCompatActivity {
         loginViewModel.setEnabled(true);
     }
 
-    public LiveData<Boolean> isShowLoading(){
-        return loginViewModel.isShowLoading();
+    private void sharedPreferenceLogin(){
+        List<String> lstDataUser = UtilsPreference.getUserDataLogin(getApplicationContext());
+        if (!lstDataUser.get(0).isEmpty() && !lstDataUser.get(1).isEmpty()){
+            binding.pbLogin.setVisibility(View.VISIBLE);
+            loginViewModel.setEnabled(false);
+            binding.tvRegistro.setVisibility(View.GONE);
+            if (UtilInternetConnection.isOnline(getApplicationContext())){
+                loginViewModel.login(lstDataUser.get(0),lstDataUser.get(1)).observe(lifecycleOwner, new Observer<LoginResponse>() {
+                    @Override
+                    public void onChanged(LoginResponse loginResponse) {
+                        binding.pbLogin.setVisibility(View.GONE);
+                        if (null != loginResponse) {
+                            if (loginResponse.getEstatus().equals("200")) {
+                                openMenu(loginResponse.getUser());
+                            } else {
+                                loginViewModel.setErrorMessage("Usuario y/o contraseña incorrectos !");
+                            }
+                        }
+                    }
+                });
+            } else {
+                loginViewModel.setErrorMessage(getString(R.string.noInternet));
+            }
+        } else {
+            //Stilo de texto tipo Link para Registro
+            SpannableString content = new SpannableString(getString(R.string.registrarse));
+            content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+            binding.tvRegistro.setText(content);
+
+            binding.tvRegistro.setOnClickListener(v -> {
+                Intent intent = new Intent(this,RegistroActivity.class);
+                startActivity(intent);
+                finish();
+            });
+        }
     }
 
     public void login(String userName, String password){
         if (isOnline(getApplicationContext())) {
-            loginViewModel.setIsShowLoadin(true);
+            binding.pbLogin.setVisibility(View.VISIBLE);
             loginViewModel.login(userName, password).observe(lifecycleOwner, new Observer<LoginResponse>() {
                 @Override
                 public void onChanged(LoginResponse loginResponse) {
-                    loginViewModel.setIsShowLoadin(false);
+                    binding.pbLogin.setVisibility(View.GONE);
                     if (null != loginResponse) {
                         if (loginResponse.getEstatus().equals("200")) {
                             openMenu(loginResponse.getUser());
@@ -101,10 +142,10 @@ public class LoginActivity extends AppCompatActivity {
         btnLoginFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                loginViewModel.setIsShowLoadin(true);
+                binding.pbLogin.setVisibility(View.VISIBLE);
                 loginViewModel.setEnabled(false);
                 GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), ((object, response) -> {
-                    loginViewModel.setIsShowLoadin(false);
+                    binding.pbLogin.setVisibility(View.GONE);
                     loginViewModel.setEnabled(true);
                    try {
                        //  URL photoFace = new URL("https://graph.facebook.com/" + object.getString("id") + "/picture?width=250&height=250");
@@ -113,12 +154,12 @@ public class LoginActivity extends AppCompatActivity {
                        facebookLoginModel.setFacebookUserEmail(object.getString(FACEBOOK_EMAIL));
 
                        if (isOnline(getApplicationContext())) {
-                           loginViewModel.setIsShowLoadin(true);
+                           binding.pbLogin.setVisibility(View.VISIBLE);
                            loginViewModel.setEnabled(false);
                            loginViewModel.validaUsuarioFacebook(facebookLoginModel.getFacebookId()).observe(lifecycleOwner, new Observer<LoginResponse>() {
                                @Override
                                public void onChanged(LoginResponse loginResponse) {
-                                   loginViewModel.setIsShowLoadin(false);
+                                   binding.pbLogin.setVisibility(View.GONE);
                                    if (null != loginResponse) {
                                        openMenu(loginResponse.getUser());
                                    }

@@ -13,7 +13,6 @@ import com.chrisstek.geekquizz.ui.SingleMediatorLiveEvent;
 
 public class LoginViewModel extends ViewModel {
     private LoginInteractor interactor;
-    private LiveData<Boolean> isShowLoading = new MutableLiveData<>();
     private LiveData<Boolean> isEnabled = new MutableLiveData<>();
     private final SingleMediatorLiveEvent<String> allMessages = new SingleMediatorLiveEvent<>();
 
@@ -21,7 +20,6 @@ public class LoginViewModel extends ViewModel {
     public LoginViewModel(LoginInteractor interactor){
         this.interactor = interactor;
         setEnabled(true);
-        setIsShowLoadin(false);
     }
 
     public LiveData<LoginResponse> login(String userName, String password){
@@ -32,18 +30,8 @@ public class LoginViewModel extends ViewModel {
         return interactor.validaUsuarioFacebook(idFacebook);
     }
 
-    public LiveData<Boolean> isShowLoading(){
-        return this.isShowLoading;
-    }
-
     public LiveData<Boolean> isEnabled(){
         return this.isEnabled;
-    }
-
-    public void setIsShowLoadin(boolean isShowLoadin){
-        MediatorLiveData<Boolean> isVisible = new MediatorLiveData<>();
-        isVisible.setValue(isShowLoadin);
-        this.isShowLoading = isVisible;
     }
 
     public void setEnabled(boolean isEnabled){
