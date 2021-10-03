@@ -81,7 +81,7 @@ public class QuizzClient extends QuizzRetrofitClient implements QuizzServiceClie
     }
 
     @Override
-    public Observable<UpdateResponse> registroNuevoUsuario(String userNameFriend,String username, String nombre, String email, int edad, String genero, String password) {
+    public Flowable<UpdateResponse> registroNuevoUsuario(String userNameFriend,String username, String nombre, String email, int edad, String genero, String password) {
         return getQuizService().registroNuevoUsuario(userNameFriend,username,nombre,email,edad,genero,password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());

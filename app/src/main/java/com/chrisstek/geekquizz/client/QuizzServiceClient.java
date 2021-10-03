@@ -26,7 +26,7 @@ public interface QuizzServiceClient {
                                                     int idAnime);
     Observable<List<Wallpaper>> getWallpaperByAnime(String userName, String pass, int idAnime);
     Observable<UpdateResponse> updateGemas(String userName, String pass, int idUser, int gemas);
-    Observable<UpdateResponse> registroNuevoUsuario(String userNameFriend, String username,String nombre,String email,int edad,String genero,String password);
+    Flowable<UpdateResponse> registroNuevoUsuario(String userNameFriend, String username,String nombre,String email,int edad,String genero,String password);
     Observable<List<User>> searchFriendByUserName(String userName, String pass, String userNameQuery);
     Observable<UpdateResponse> addFrienById(String userName, String pass,int idUser, int idFriend);
     Observable<List<Wallpaper>> getAvatarsByAnime(String userName, String pass, int idAnime);

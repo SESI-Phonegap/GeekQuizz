@@ -131,4 +131,6 @@
     <string name="debug_description_not_found">Make sure that you have uploaded an APK to the Google Play developer console, that the correct SKUs have been created for the APK, and the signed-in account has been enabled for testing.</string>
 
     <string name="header_gemas">Gemas</string>
+
+    <string name="statu_200">200</string>
 </resources>

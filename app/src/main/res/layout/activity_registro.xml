@@ -4,11 +4,221 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.login.RegistroActivity">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="registroActivity"
+            type="com.chrisstek.geekquizz.ui.login.RegistroActivity" />
+        <variable
+            name="viewModel"
+            type="com.chrisstek.geekquizz.ui.login.RegistroViewModel" />
+
+    </data>
+
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/registro_main_layout">
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/Constraint_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/animation_background">
 
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/loginButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="Resgitrarse con Facebook"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/titleRegitro"
+                android:textColor="@color/text_primary_light"
+                android:textSize="@dimen/textSizeRegistro"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+
+            <EditText
+                android:id="@+id/et_userName"
+                style="@style/styleEditText"
+                android:layout_marginTop="@dimen/marginTopEditTextRe"
+                android:hint="@string/userName"
+                android:inputType="text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title" />
+
+            <EditText
+                android:id="@+id/et_nombre"
+                style="@style/styleEditText"
+                android:layout_marginTop="@dimen/marginTopEditTextRe"
+                android:hint="@string/nombre"
+                android:inputType="text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_userName" />
+
+            <EditText
+                android:id="@+id/et_email"
+                style="@style/styleEditText"
+                android:layout_marginTop="@dimen/marginTopEditTextRe"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_nombre" />
+            <EditText
+                android:id="@+id/et_edad"
+                style="@style/styleEditText"
+                android:layout_marginTop="@dimen/marginTopEditTextRe"
+                android:hint="@string/edad"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_email" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/relativeRadio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="@dimen/marginTopEditTextRe"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_edad"
+                android:background="@drawable/fondotextview">
+
+                <TextView
+                    android:id="@+id/tvGenero"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/genero"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/textSizeRegistro"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGenero"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/radioMujer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mujer"
+                        android:textStyle="italic|bold"
+                       />
+
+                    <RadioButton
+                        android:id="@+id/radioHombre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hombre"
+                        android:textStyle="italic|bold"
+                        />
+                </RadioGroup>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <EditText
+                android:id="@+id/et_password"
+                style="@style/styleEditText"
+                android:layout_marginTop="@dimen/marginTopEditTextRe"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativeRadio" />
+            <EditText
+                android:id="@+id/et_friendUserName"
+                style="@style/styleEditText"
+                android:layout_marginTop="@dimen/marginTopEditTextRe"
+                android:hint="@string/userNameFriend"
+                android:inputType="text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_password"
+                />
+
+            <Button
+                android:id="@+id/btn_registrar"
+                style="@style/styleBtn"
+                android:layout_marginTop="@dimen/marginBottomTop8dp"
+                android:text="@string/registrarse"
+                android:onClick="@{() -> registroActivity.registroNuevoUsuario(etFriendUserName.getText().toString(), etUserName.getText().toString(), etNombre.getText().toString(), etEmail.getText().toString(), etEdad.getText().toString(), etPassword.getText().toString())}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_friendUserName" />
+
+            <TextView
+                android:id="@+id/tv_aviso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/avisoPrivacidad"
+                android:textColor="@android:color/holo_green_dark"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_registrar" />
+
+            <ProgressBar
+                android:id="@+id/pb_registro"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

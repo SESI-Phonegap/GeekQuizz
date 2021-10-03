@@ -1,5 +1,8 @@
 package com.chrisstek.geekquizz.interactor;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.LiveDataReactiveStreams;
+
 import com.chrisstek.geekquizz.client.QuizzServiceClient;
 import com.chrisstek.geekquizz.client.model.LoginResponse;
 import com.chrisstek.geekquizz.client.model.UpdateResponse;
@@ -14,11 +17,11 @@ public class RegistroNuevoUsuarioInteractor {
         this.quizServiceClient = quizServiceClient;
     }
 
-    public Observable<UpdateResponse> registroNuevoUsuario(String userNameFriend, String username, String nombre, String email, int edad, String genero, String password){
-        return quizServiceClient.registroNuevoUsuario(userNameFriend,username,nombre,email,edad,genero,password);
+    public LiveData<UpdateResponse> registroNuevoUsuario(String userNameFriend, String username, String nombre, String email, int edad, String genero, String password){
+        return LiveDataReactiveStreams.fromPublisher(quizServiceClient.registroNuevoUsuario(userNameFriend,username,nombre,email,edad,genero,password));
     }
 
-    public Flowable<LoginResponse> login(String userName, String pass){
-        return quizServiceClient.login(userName,pass);
+    public LiveData<LoginResponse> login(String userName, String pass){
+        return LiveDataReactiveStreams.fromPublisher(quizServiceClient.login(userName,pass));
     }
 }

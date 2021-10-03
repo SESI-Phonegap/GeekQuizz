@@ -120,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onChanged(LoginResponse loginResponse) {
                     binding.pbLogin.setVisibility(View.GONE);
                     if (null != loginResponse) {
-                        if (loginResponse.getEstatus().equals("200")) {
+                        if (loginResponse.getEstatus().equals(getString(R.string.statu_200))) {
                             openMenu(loginResponse.getUser());
                         } else {
                             loginViewModel.setErrorMessage("Usuario y/o contraseña incorrectos !");

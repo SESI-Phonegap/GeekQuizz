@@ -78,7 +78,7 @@ public interface QuizzRetrofitService {
 
     @POST(Constants.EndPoint.REGISTRO_NUEVO_USUARIO)
     @FormUrlEncoded
-    Observable<UpdateResponse> registroNuevoUsuario(@Field(Constants.ParametersBackEnd.USER_NAME_FRIEND) String userNameFriend,
+    Flowable<UpdateResponse> registroNuevoUsuario(@Field(Constants.ParametersBackEnd.USER_NAME_FRIEND) String userNameFriend,
                                                     @Field(Constants.ParametersBackEnd.USER_NAME) String username,
                                                     @Field(Constants.ParametersBackEnd.NOMBRE) String nombre,
                                                     @Field(Constants.ParametersBackEnd.EMAIL) String email,
